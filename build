@@ -20,6 +20,11 @@ if [ -d "web" ]; then
   rm -rf web
 fi
 
+if [ -d ${PROFILE_NAME}"/modules/contrib" ]; then
+  echo "Removing contrib modules"
+  rm -rf ${PROFILE_NAME}/modules/contrib
+fi
+
 # Make Drupal core.
 echo "==> Make Drupal core..."
 drush make --working-copy platform.make web --translations=sv
