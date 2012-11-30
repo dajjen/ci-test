@@ -3,20 +3,15 @@
 # build the system.
 
 # Configuration.
-PROFILE_NAME="marathon"
+PROFILE_NAME="davva"
 PROFILE_ROOT="web/profiles/${PROFILE_NAME}"
 REPOSITORY_ROOT_DIR=$(pwd)
-
 
 # Make sure our profile exists.
 if [ ! -d ${PROFILE_NAME} ]; then
 echo "Could not find ${PROFILE_NAME}! Aborting."
   exit 1
 fi
-
-# Protect our profile.
-# rm -rf web-old
-# mv web web-old
 
 if [ -d "web" ]; then
   echo "chmod +w web/sites/default"
@@ -32,11 +27,6 @@ drush make --working-copy platform.make web --translations=sv
 # Create symlink to web folder from profile
 ln -s ../../${PROFILE_NAME} web/profiles/${PROFILE_NAME}
 
-# Empty contrib folders, should be populated by our make file.
-#rm -rf web/profiles/${PROFILE_NAME}/modules/contrib/*
-#rm -rf web/profiles/${PROFILE_NAME}/libraries/*
-#rm -rf web/profiles/${PROFILE_NAME}/themes/contrib/*
-
 # Make profile.
 echo "==> Make profile..."
 cd ${PROFILE_ROOT}
@@ -44,18 +34,6 @@ drush -y make --no-core --working-copy ${PROFILE_NAME}.make --contrib-destinatio
 
 # Get back to root directory.
 cd ${REPOSITORY_ROOT_DIR}
-
-# Keep "sites" folder, but "sites/all" should be populated by our make file.
-#if [ -d web-old/sites ]; then
-#  rm -rf web-old/sites/all
-#  mv web/sites/all web-old/sites/.
-#  rm -rf web/sites
-#  mv web-old/sites web/sites
-#fi
-
-# Remove temporary folder.
-# echo "==> Remove temporary copy of old web folder..."
-# rm -rf web-old
 
 echo "==> Build done!"
 

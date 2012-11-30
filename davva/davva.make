@@ -3,17 +3,7 @@ core = 7.x
 projects[drupal][version] = 7.17
 
 ;Site modules
-projects[] = views
-projects[] = panels
-projects[] = features
-projects[] = ctools
-projects[] = panels_everywhere
-projects[] = rules
-projects[] = strongarm
-projects[] = token
+projects[views][version] = 3.5
+projects[views][subdir] = contrib
 
 ;development tools
-projects[] = devel
-projects[] = admin_menu
-projects[] = module_filter
-projects[] = search_krumo
