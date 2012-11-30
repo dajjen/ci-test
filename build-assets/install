@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Run drush site install with profile
+
+if pushd web; then
+  echo "Installing"
+  drush site-install marathon --account-name=admin --account-pass=admin --site-mail=david.park@wunderkraut.com --site-name=marathon.se --db-url=mysql://root:password@localhost/262_db1 -y
+  popd
+fi
+
